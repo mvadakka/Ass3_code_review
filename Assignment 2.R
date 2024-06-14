@@ -1,3 +1,6 @@
 #CODING IN R LANGUAGE
 #JUNE 2024
 #VIAN TRAN
+
+
+testInheritedMethods()
