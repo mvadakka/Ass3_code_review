@@ -1,3 +1,4 @@
+#ASSIGNMENT 2
 #CODING IN R LANGUAGE
 #JUNE 2024
 #VIAN TRAN
@@ -29,7 +30,9 @@ if (is.na(number)) {
 #If all the above are FALSE, the number is numeric and a 3 digit positive number.
 } else {
   print(paste(number, "is a 3 digit positive number! Congrats! Let's see if it is narcississtic."))
+}
 
+###SHOULD THIS BE INSIDE OR OUTSIDE THE ELSE FUNCTION?!?!? 
 #Split the 3 digit positive number into its individual digits (ie. 123 into 1, 2, and 3)
 #We can use the strsplit function by reading the number with as.character 
 #We can then unlist the resulting list of individual digits from above and create a vector of character 
@@ -46,8 +49,6 @@ if (sum_of_cubes == number) {
 } else {
   print(paste("Sorry, please do better next time,", number, "is not a narcissistic number. Do better."))
 }
-}
-
 
 
 
