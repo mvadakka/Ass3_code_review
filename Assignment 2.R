@@ -17,10 +17,11 @@
 #prompt the user to enter in a 3 digit positive number and save it in the environment under "number"
 number <- readline(prompt = "Please enter a three-digit positive number:  ")
 
-#the number vector is a character vector, we need to convert it to a numeric vector
+#the "number" vector is a character vector, we need to convert it to a numeric vector 
+#using as.numeric function
 number <- as.numeric(number)
 
-#Checking system 
+#Checking system: 
 #Check if the number is numeric. TRUE indicates it is not numeric
 if (is.na(number)) {
   print(paste(number, "is not numeric, please try again and input a 3 digit positive number!"))
@@ -40,8 +41,10 @@ if (is.na(number)) {
 
 #Split the 3 digit positive number into its individual digits (ie. 123 into 1, 2, and 3)
 #We can use the strsplit function by reading the number with as.character 
+#EXPLAIN strsplit function!!!!
 #We can then unlist the resulting list of individual digits from above and create a vector of character 
-#using unlist function
+#using unlist function (EXPLAIN THIS BETTER)
+#EXPLAIN UNLIST FUNCTION!!!
 #We can finally convert the vector of character into a numeric vector and read the output with as.numeric 
 
 individual_character <- strsplit(as.character(number), "")
