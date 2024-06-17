@@ -33,6 +33,11 @@ if (is.na(number)) {
 }
 
 ###SHOULD THIS BE INSIDE OR OUTSIDE THE ELSE FUNCTION?!?!? 
+###If I input "12" it gives both "not a 3 digit positive number AND its not a narcissistic number... if i source it all
+### is the naming system confusing? 
+
+###break the explanation up and put the code beside what youre talking about
+
 #Split the 3 digit positive number into its individual digits (ie. 123 into 1, 2, and 3)
 #We can use the strsplit function by reading the number with as.character 
 #We can then unlist the resulting list of individual digits from above and create a vector of character 
