@@ -14,11 +14,10 @@
 #if TRUE - display number is a narcissistic number  
 #if FALSE - display number is not a narcissistic number 
 
-#prompt the user to enter in a 3 digit positive number and save it in the environment under "number"
+#Prompt the user to enter in a 3 digit positive number and save it in the environment under "number"
 number <- readline(prompt = "Please enter a three-digit positive number:  ")
 
-#the "number" vector is a character vector, we need to convert it to a numeric vector 
-#using as.numeric function
+#The "number" vector is a character vector, we need to convert it to a numeric vector for further use
 number <- as.numeric(number)
 
 #Checking system: 
@@ -28,36 +27,35 @@ if (is.na(number)) {
 #Check if the number is a 3 digit positive number. TRUE indicates it is not a 3 digit positive number
 } else if (number >= 1000 | number <= 99) {
   print(paste(number, "is not a 3 digit positive number, please try again and input a 3 digit positive number!"))
-#If all the above are FALSE, the number is numeric and a 3 digit positive number.
+#If all of the above conditions are FALSE, the number is numeric and a 3 digit positive number.
 } else {
   print(paste(number, "is a 3 digit positive number! Congrats! Let's see if it is narcississtic."))
-}
 
-###SHOULD THIS BE INSIDE OR OUTSIDE THE ELSE FUNCTION?!?!? 
-###If I input "12" it gives both "not a 3 digit positive number AND its not a narcissistic number... if i source it all
-### is the naming system confusing? 
+#To sum the cubes of each individual digit in the 3 digit positive number,
+#we need to split the 3 digit positive number into its individual digits (ie. 123 into 1, 2, and 3)
 
-###break the explanation up and put the code beside what youre talking about
-
-#Split the 3 digit positive number into its individual digits (ie. 123 into 1, 2, and 3)
-#We can use the strsplit function by reading the number with as.character 
-#EXPLAIN strsplit function!!!!
-#We can then unlist the resulting list of individual digits from above and create a vector of character 
-#using unlist function (EXPLAIN THIS BETTER)
-#EXPLAIN UNLIST FUNCTION!!!
-#We can finally convert the vector of character into a numeric vector and read the output with as.numeric 
+#We can split the elements of a character vector using the strsplit function by first reading the 3
+#digit positive number as characters
 
 individual_character <- strsplit(as.character(number), "")
+
+#The strsplit function will display the results as a list. To calculate the sum of cubes of each
+#individual digit, we need to create a vector from the list by using the unlist function
+#We finially need to convert the vector of characters to a numeric vector for further use
+
 individual_digit <- as.numeric(unlist(individual_character))
 
-#Sum the cubes of its own digits
+#Sum the cubes of each individual digit from the 3 digit positive number (ie. 123 -> 1^3 + 2^3 + 3^3)
 sum_of_cubes <- sum(individual_digit^3)
+#Check if the sum of cubes of each individual digit is equal to the 3 digit positive number you entered
+#If the condition is true, the number is a narcissistic number
 if (sum_of_cubes == number) {
   print(paste(number, "is a narcissistic number! Congratulations! Great pick!"))
+#If the above condition if false, the 3 digit positive number is not a narcissistic number
 } else {
   print(paste("Sorry, please do better next time,", number, "is not a narcissistic number. Do better."))
 }
-
+}
 
 
 
