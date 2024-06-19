@@ -1,38 +1,37 @@
 #ASSIGNMENT 2
 #CODING IN R LANGUAGE
-#JUNE 2024
+#Summer term 2024
 #VIAN TRAN
 
 #PLAN
 #1. Prompt and read user input (enter 3 digit positive number)
 #2. Check if the number if numeric, if not print error message and exit 
 #3. Check if the number is a 3 digit positive number (number < 1000 and > 99), if not print error message 
-# and quit
+# and exit
 #4. If all of the above are TRUE, we need to extract each digit in the 3 digit positive number to then
 #calculate for a narcissistic number
 #5. Check if the number is narcissistic (a number that is equal to the sum of the cubes of its own digits) 
 #if TRUE - display number is a narcissistic number  
 #if FALSE - display number is not a narcissistic number 
 
-#Prompt the user to enter in a 3 digit positive number and save it in the environment under "number"
+#Prompt the user to enter in a 3 digit positive number and save it in the environment as variable "number"
 number <- readline(prompt = "Please enter a three-digit positive number:  ")
 
-#The "number" vector is a character vector, we need to convert it to a numeric vector for further use
+#The "number" variable is a character vector, we need to convert it to a numeric vector for further use
 number <- as.numeric(number)
 
 #Checking system: 
-#Check if the number is numeric. TRUE indicates it is not numeric. if TRUE stop the code.
+#Check if the number is numeric. TRUE indicates it is not numeric. if TRUE stop the code
 if (is.na(number)) {
   stop(paste(number, "is not numeric, please try again and input a 3 digit positive number!"))
 #Check if the number is a 3 digit positive number. TRUE indicates it is not a 3 digit positive number,
-#if TRUE stop the code.
+#if TRUE stop the code
 } else if (number >= 1000 | number <= 99) {
   stop(paste(number, "is not a 3 digit positive number, please try again and input a 3 digit positive number!"))
 #If all of the above conditions are FALSE, the number is numeric and a 3 digit positive number.
 } else {
   print(paste(number, "is a 3 digit positive number! Congrats! Let's see if it is narcississtic."))
-#IS THIS PRINT NECESSARY OR SHOULD I JUMP TO NARCISSISTIC OR NOT?!?!
-  
+
 #To sum the cubes of each individual digit in the 3 digit positive number,
 #we need to split the 3 digit positive number into its individual digits (ie. 123 into 1, 2, and 3)
 
