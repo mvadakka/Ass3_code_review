@@ -42,7 +42,7 @@ individual_character <- strsplit(as.character(number), "")
 
 #The strsplit function will display the results as a list. To calculate the sum of cubes of each
 #individual digit, we need to create a vector from the list by using the unlist function
-#We finially need to convert the vector of characters to a numeric vector for further use
+#We finally need to convert the vector of characters to a numeric vector for further use
 
 individual_digit <- as.numeric(unlist(individual_character))
 
