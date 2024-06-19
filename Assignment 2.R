@@ -21,16 +21,18 @@ number <- readline(prompt = "Please enter a three-digit positive number:  ")
 number <- as.numeric(number)
 
 #Checking system: 
-#Check if the number is numeric. TRUE indicates it is not numeric
+#Check if the number is numeric. TRUE indicates it is not numeric. if TRUE stop the code.
 if (is.na(number)) {
-  print(paste(number, "is not numeric, please try again and input a 3 digit positive number!"))
-#Check if the number is a 3 digit positive number. TRUE indicates it is not a 3 digit positive number
+  stop(paste(number, "is not numeric, please try again and input a 3 digit positive number!"))
+#Check if the number is a 3 digit positive number. TRUE indicates it is not a 3 digit positive number,
+#if TRUE stop the code.
 } else if (number >= 1000 | number <= 99) {
-  print(paste(number, "is not a 3 digit positive number, please try again and input a 3 digit positive number!"))
+  stop(paste(number, "is not a 3 digit positive number, please try again and input a 3 digit positive number!"))
 #If all of the above conditions are FALSE, the number is numeric and a 3 digit positive number.
 } else {
   print(paste(number, "is a 3 digit positive number! Congrats! Let's see if it is narcississtic."))
-
+#IS THIS PRINT NECESSARY OR SHOULD I JUMP TO NARCISSISTIC OR NOT?!?!
+  
 #To sum the cubes of each individual digit in the 3 digit positive number,
 #we need to split the 3 digit positive number into its individual digits (ie. 123 into 1, 2, and 3)
 
