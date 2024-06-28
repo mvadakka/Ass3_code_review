@@ -3,6 +3,8 @@
 #Summer term 2024
 #VIAN TRAN
 
+#Hangman
+
 #PLAN
 #1. Prepare a dictionary of words to choose from and save it in a txt file (one column) 
 #and save it in the project directory
@@ -25,4 +27,29 @@
       #Always notify the user about the correct letters/wrong letters, remaining tries.
       #OR
       #If tries are exhausted, notify user that they’ve lost. Reveal secret and exit.
+
+#make sure you put your hangman.txt file in your working directory, replace it with your wd
+setwd("/Users/viantran/Downloads/MBiotech/MBiotech-Coding-in-R-Language")
+
+#load in and read the list of words from "hangman.txt", it will present it as a 
+#character vector
+word_list <- readLines("hangman.txt", warn = FALSE)
+
+#pick a random word from the list
+#the sample() function will pick one word from the list
+secret_word <- sample(word_list, 1)
+secret_word_length <- nchar(secret_word)
+
+#number of wrong guesses allowed
+max_wrong_guesses <- 5
+
+#wrong guesses used, currently set to 0 
+wrong_guesses <- 0 
+
+cat("Your secret word has been chosen and the length of the secret word is", 
+                secret_word_length, "characters long. \nYou are allowed up to",
+    max_wrong_guesses, "wrong guesses in this game!")
+
+
+
 
