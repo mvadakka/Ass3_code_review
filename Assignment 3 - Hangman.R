@@ -90,6 +90,12 @@ wrong_guesses_list <- c()
 #correctly guessed letter tracker 
 guessed_word <- rep("_", secret_word_length)
 
+#break the secret word into individual letters
+#the strsplit function will split the elements of a character vector into substrings (list)
+#the unlist function will convert the list to produce a vector which contains all the 
+#atomic components 
+guessed_word_letters <- unlist(strsplit(guessed_word))
+
 #introductions to the game, character length of word, and rules 
 cat("Welcome to the game of hangman! Let's \"hang\" and play a quick game! \n
 Your secret word has been chosen and the length of the secret word is", 
@@ -119,16 +125,30 @@ while(wrong_guesses < max_wrong_guesses) {
 #display the current state of the game
 #let the users know the letters the guessed correctly, wrong letters guessed, and 
 #the number of guesses they have left
+  cat("Current progress:", paste(guessed_word), 
+      "\nWrong guesses:", paste(wrong_guesses_list), 
+      "\nYou have", max_wrong_guesses - wrong_guesses, "wrong guesses left.")
 
+#prompt the user for an input, which will be converted to a lowercase letter
+  user_input <- tolower(readline(prompt = "Please enter a single letter or enter the full word:"))
+
+#check if the user input is a sinlge character and a lowercase letter in the alphabet
+  if (nchar(user_input) == 1 && grepl("[a-z]", user_input)){
+#if the above is true, check if the user input is a match in the secret word using %in%
+    if(user_input %in% guessed_word_letters){
+      
+    }
+  }
+
+  else if(user_input == secret_word){
+    
+  }
   
-  
+  else {
+    
+  }
 }
 
-#6. Ask for user input.
-#7a. Check System for one character (IF)
-#Check if the character is a letter
-#Make sure that both lower and upper case letters are acceptable and treated as equivalent
-#SIDE NOTE - create a vector to keep track of correctly guessed letters
 #8a. Check to see if the user input is in the secret word. (correct)
 #If yes, notify user and ask for next letter or guess the whole word
 #Always notify the user about the correct letters/wrong letters, remaining tries.
