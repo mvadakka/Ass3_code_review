@@ -97,6 +97,12 @@ Good luck! We will be watching.\n
 #wrong_guesses < max_wrong_guesses no long applies 
 while(wrong_guesses < max_wrong_guesses) {
 
+  if(("_" %in% guessed_word) == FALSE){
+    cat("Congratulations! You've gusses the right word! The answer was", secret_word, "\nand you answered it with", 
+        max_wrong_guesses - wrong_guesses, "guesses left. You didn't get hanged today! Slay!\n")
+    break
+  }
+  
 #Display the current state of the game
 #Let the users know the letters they guessed correctly and incorrectly, and 
 #The number of guesses they have left
@@ -165,4 +171,3 @@ if(wrong_guesses == max_wrong_guesses) {
     cat("Unfortunately, you have used up all of your guesses. You have been hanged. \nWOMP WOMP! The answer was \"",
         secret_word, "\". Better luck next time.")
   }
-
