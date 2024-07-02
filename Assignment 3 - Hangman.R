@@ -16,7 +16,7 @@
 #Decide on the rule here and implement it
 
 #While loop (condition - when wrong guesses < max wrong guess then continue with loop) 
-#Break: end it when guess word = secret word
+#Break: end it when guess word = secret word (or in our case it would be when the _ _ _ is all filled)
 #Notify users they won! 
 
 #Text to display current state of the game for users
@@ -38,6 +38,7 @@
   #This means the user tried guessing the full word and got it wrong
   #They need to try again
   #If they enter the wrong full word, they will not get any hints from entering that word
+  #if they guessed the full word and got it right, congratulate them, break the loop and exit
 
 #7c. ELSE - invalid input try again
 
@@ -68,10 +69,10 @@ max_wrong_guesses <- 6
 #Wrong guesses tracker, currently set to 0
 wrong_guesses <- 0 
 
-#Wrong guesses letter tracker, currently empty (displayed as a list)
+#Wrong guesses letter tracker, currently empty 
 wrong_guesses_list <- c()
 
-#Correctly guessed letter tracker 
+#Correctly guessed letter tracker, each letter is represented by a _ 
 guessed_word <- rep("_", secret_word_length)
 
 #Break the secret word into individual letters
@@ -81,7 +82,7 @@ guessed_word <- rep("_", secret_word_length)
 secret_word_letters <- unlist(strsplit(secret_word, ""))
 
 #Initialize user_input variable as an empty character vector for later use
-user_input <- character(0)
+user_input <- character()
 
 #Introductions to the game, character length of word, and rules 
 cat("Welcome! Let's \"hang\" and play a quick game of Hangman! \n
@@ -94,9 +95,12 @@ Good luck! We will be watching.\n
 
 #The "while" loop is the main game play loop
 #The loop will break when the players guess the full word correctly or when the condition
-#wrong_guesses < max_wrong_guesses no long applies 
+#wrong_guesses < max_wrong_guesses no longer applies 
 while(wrong_guesses < max_wrong_guesses) {
 
+#if the blanks "_" representing each letter in the secret word is filled (ie. they guessed 
+#the full word by entering each letter individually) then produce a congratulating statement and break
+#the loop and exit
   if(("_" %in% guessed_word) == FALSE){
     cat("Congratulations! You've gusses the right word! The answer was", secret_word, "\nand you answered it with", 
         max_wrong_guesses - wrong_guesses, "guesses left. You didn't get hanged today! Slay!\n")
@@ -115,7 +119,7 @@ user_input <- tolower(readline(prompt = "Please enter a single letter or enter t
 
 #Check if the user input is a single character and a lowercase letter in the alphabet
   if (nchar(user_input) == 1 && grepl("[a-z]", user_input)){
-#If the above line is true, check if the user input is a match in the secret word using %in%
+#If the above line is true, check if the user input is a match in the secret word using %in% function
     if(user_input %in% secret_word_letters){
       #If the user input is a match to a letter in the secret word, update the guessed_word
       #variable with the correct letter with a "for" loop 
@@ -123,6 +127,7 @@ user_input <- tolower(readline(prompt = "Please enter a single letter or enter t
       #It will check if the condition is true
       #If the character at position i in secret_word_letter matches the user_input, 
       #then guessed_word is updated with the correctly matched letter in secret_word_letter
+      #at position i
       for (i in 1:secret_word_length){
         if (secret_word_letters[i] == tolower(user_input)){
           (guessed_word[i] <- secret_word_letters[i])
@@ -137,14 +142,16 @@ user_input <- tolower(readline(prompt = "Please enter a single letter or enter t
       wrong_guesses <- wrong_guesses + 1
       #add the wrong guessed letter to the wrong_guess_list
       wrong_guesses_list <- c(wrong_guesses_list, user_input)
-      cat("Wrong guess!\n")
+      cat("Wrong guess! Don't cry.\n")
     }
   }
 
   #Check if the user_input is more than a single character, alphabetical, and it doesn't 
-  #include punctuation, digits, and spaces
-  #This can be used when the user attempts to guess the whole word and are incorrect
-  #Update the wrong guess count
+  #include punctuation, digits, and spaces (since it is a multiple character word, we need to ensure
+  #punctuation, digits and spaces are not accidentally included)
+  #This can be used when the user attempts to guess the whole word and are either correct - congratulate
+  #them and break the while loop
+  #if they guess the whole word and are incorrect - it will update the wrong guess count
   else if((nchar(user_input)) > 1 && grepl("[a-z]", user_input) && !(grepl("\\d", user_input)) 
   && !(grepl("[[:punct:]]", user_input)) && !(grepl("[[:space:]]", user_input))){
     if(tolower(user_input) == secret_word){
@@ -154,11 +161,12 @@ user_input <- tolower(readline(prompt = "Please enter a single letter or enter t
     }
 else {
     wrong_guesses <- wrong_guesses + 1 
-    cat("Wrong guess!\n")
+    cat("Wrong guess! Do better...\n")
   }
 } 
 #If all the above conditions are false when wrong_guesses < max_wrong_guesses, 
 #the user input was invalid and they need to try again
+#for example if they entered a digit, punctuation or space, etc.
   else{
     cat("Invalid input, please try again! Please enter a letter, or guess the full word.\n")
   }
@@ -167,6 +175,8 @@ else {
 #This is the end of the main loop when wrong_guesses < max_wrong_guesses
 
 #If number of wrong guesses = max wrong guesses, the game is over
+#it would not satisfy the while loop condition of wrong_guesses < max_wrong_guesses
+#tell the user the have lost, and provide them the secret word 
 if(wrong_guesses == max_wrong_guesses) {
     cat("Unfortunately, you have used up all of your guesses. You have been hanged. \nWOMP WOMP! The answer was \"",
         secret_word, "\". Better luck next time.")
