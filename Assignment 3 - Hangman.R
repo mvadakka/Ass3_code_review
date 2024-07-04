@@ -42,6 +42,7 @@
 
 #7c. ELSE - invalid input try again
 
+
 #LETS BEGIN
 
 #Make sure you put your hangman.txt file in your working directory
@@ -180,4 +181,16 @@ else {
 if(wrong_guesses == max_wrong_guesses) {
     cat("Unfortunately, you have used up all of your guesses. You have been hanged. \nWOMP WOMP! The answer was \"",
         secret_word, "\". Better luck next time.")
-  }
+}
+
+
+#####' MV: Love your detailed plan in the beginning, helps user know what to expect from the code.
+#####' MV: When multiple letters are inputted, attempt is reduced and it doesn't let the user know "invalid input" as it
+#####' does for a number - this can be easily fixed by including nchar(secret_word) != 1 within the if else statements where
+#####' numbers are considered invalid.
+#####' MV: Another tip is to include all the code from line 64 - 185 in a function called hangman() <- function [line 64-185], 
+#####' and then after line 185 state hangman(). By doing this, as soon as the user calls hangman() all the code from lines 64-185
+#####' will automatically run and user won't have to run each section of code every time 
+#####' MV: It might be helpful to include number of guesses at least as many times as letters in the secret word (i.e. 8 letter word, 8 guesses)
+#####' otherwise it's hard to guess (might be skill issue lol)
+#####' MV: Otherwise great job :) everything is working as it should!!
